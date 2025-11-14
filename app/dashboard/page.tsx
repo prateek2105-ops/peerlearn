@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { supabase, Profile } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { BookOpen, Users, Video, Upload, Award, MessageSquare, LogOut, Bell } from 'lucide-react';
+import { BookOpen, Users, Video, Upload, Award, MessageSquare, LogOut, Bell, User } from 'lucide-react';
 
 export default function Dashboard() {
   const router = useRouter();
@@ -63,12 +63,12 @@ export default function Dashboard() {
                 <Bell className="h-6 w-6" />
                 <span className="absolute top-0 right-0 h-2 w-2 bg-red-500 rounded-full"></span>
               </button>
-              <div className="flex items-center space-x-2">
+              <Link href="/profile" className="flex items-center space-x-2 hover:bg-gray-50 rounded-lg p-2">
                 <div className="h-10 w-10 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold">
                   {profile?.full_name?.charAt(0).toUpperCase()}
                 </div>
                 <span className="text-gray-700">{profile?.full_name}</span>
-              </div>
+              </Link>
               <button
                 onClick={handleSignOut}
                 className="p-2 text-gray-600 hover:text-red-600"
@@ -131,10 +131,10 @@ export default function Dashboard() {
             color="bg-red-500"
           />
           <ActionCard
-            icon={<BookOpen className="h-8 w-8" />}
-            title="Find Peers"
-            description="Connect with study partners"
-            href="/find-peers"
+            icon={<User className="h-8 w-8" />}
+            title="My Profile"
+            description="View and edit your profile"
+            href="/profile"
             color="bg-indigo-500"
           />
         </div>
